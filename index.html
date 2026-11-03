@@ -5,26 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Amit Shivam</title>
 <meta name="description" content="Amit Shivam — postdoctoral researcher at the University of Porto. Guidance and control for real-world autonomy, UAVs, airborne wind energy and robotics.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F4F7FA; --surface:#FFFFFF; --band:#E9F0F5; --fg:#0B1F33; --muted:#526579;
-  --line:#D9E3EB; --accent:#D65A31; --accent-fg:#FFFFFF; --teal:#087E8B; --field:#8DA6BC;
+  --bg:#EAF3FA; --surface:#FFFFFF; --band:#DCEAF4; --fg:#0B1F33; --muted:#526579;
+  --line:#C7D8E7; --accent:#D65A31; --accent-fg:#FFFFFF; --teal:#087E8B; --field:#8DA6BC;
   --media-bg:#FFFFFF; --focus:#087E8B;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0A1220; --surface:#111B2D; --band:#0E1727; --fg:#E7ECF4; --muted:#9FAABB;
-    --line:#26344A; --accent:#FF8A4C; --accent-fg:#1A0E05; --teal:#5FC6CF; --field:#3A4A64;
-    --media-bg:#FFFFFF; --focus:#5FC6CF; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0A1220; --surface:#111B2D; --band:#0E1727; --fg:#E7ECF4; --muted:#9FAABB;
-  --line:#26344A; --accent:#FF8A4C; --accent-fg:#1A0E05; --teal:#5FC6CF; --field:#3A4A64;
-  --media-bg:#FFFFFF; --focus:#5FC6CF; color-scheme:dark;
-}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -185,7 +174,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       <p class="lede">I develop guidance, control and adaptive estimation methods for UAVs and autonomous robotic systems, connecting convergence and feasibility analysis with simulation, embedded implementation and experimental testing.</p>
       <div class="cta">
         <a class="btn primary" href="#featured">See featured work</a>
-        <a class="btn" href="https://sites.google.com/view/amit-shivam/home">Academic site and CV</a>
+        <a class="btn" href="https://sites.google.com/view/amit-shivam/home">Website</a>
       </div>
     </div>
     <figure class="hero-photo">
@@ -195,11 +184,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   </div>
 </section>
 
-<section class="facts wrap" aria-label="At a glance">
-  <div><span class="num">Ph.D. 2024</span><span class="lab">Indian Institute of Science</span></div>
-  <div><span class="num">Fixed-wing + multirotor</span><span class="lab">outdoor flight trials</span></div>
-  <div><span class="num">25 Hz</span><span class="lab">real-time safety filter on hardware</span></div>
-  <div><span class="num">M.Sc. thesis</span><span class="lab">currently supervising</span></div>
+<section class="facts wrap" aria-label="Research and professional highlights">
+  <div><span class="num">17 Publications</span><span class="lab">Including 2 in JGCD</span></div>
+  <div><span class="num">MSCA Seal of Excellence</span><span class="lab">European Commission · 90% score</span></div>
+  <div><span class="num">Flight Testing</span><span class="lab">Fixed-wing + multirotor outdoor trials</span></div>
+  <div><span class="num">TrustRobotics 2026</span><span class="lab">1 of 8 finalists</span></div>
 </section>
 
 <section id="about" class="wrap block about-section">
@@ -300,8 +289,8 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <div class="f-media">
       <figure>
-        <img src="assets/crazynav_pipeline.jpg" alt="CrazyNaV pipeline diagram: perception, estimation, planning, control and Crazyflie actuation, closed by a real-time feedback loop" loading="lazy">
-        <figcaption>The perception–estimation–planning–control pipeline. The outlined stage, estimation, is the research focus.</figcaption>
+        <img src="assets/crazynav_pipeline.jpg" alt="CrazyNaV four-stage pipeline: perception, estimation, planning and control" loading="lazy">
+        <figcaption>CrazyNaV: perception, estimation, planning and control. Adaptive state estimation is the current research focus.</figcaption>
       </figure>
     </div>
   </article>
@@ -334,8 +323,8 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       <div class="card"><h3>Real-time implementation</h3><p>Safety filters solved at 25 Hz with a 7.5 ms mean QP time, with measured delay budgets rather than assumed ones.</p></div>
       <div class="card"><h3>Perception and navigation integration</h3><p>Overhead vision, OpenCV, UDP and Bluetooth LE communication for racing robots; ROS/Gazebo simulation work for nano-UAV navigation.</p></div>
       <div class="card"><h3>Guidance, navigation and control</h3><p>Path following, constrained control, estimation and mission-level autonomy for UAVs, with proofs and tuning evidence together.</p></div>
-      <div class="card"><h3>Honest validation</h3><p>Reported limits next to reported results: saturation, delay and boundary contact are stated, not hidden.</p></div>
-      <div class="card"><h3>Mentoring engineers</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
+      <div class="card"><h3>Flight-control software</h3><p>Guidance implementation and evaluation using ArduPilot, MATLAB/Simulink and simulation-in-the-loop workflows.</p></div>
+      <div class="card"><h3>Mentoring students</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
     </div>
   </div>
 </section>
@@ -367,7 +356,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <ul class="links">
       <li><a href="https://www.linkedin.com/in/amitshivam1407/">LinkedIn</a></li>
       <li><a href="https://github.com/amitshivam1407">GitHub</a></li>
-      <li><a href="https://sites.google.com/view/amit-shivam/home">Academic site</a></li>
+      <li><a href="https://sites.google.com/view/amit-shivam/home">Website</a></li>
       <li><a href="https://arxiv.org/abs/2512.06124">arXiv: Variable L<sub>0</sub></a></li>
     </ul>
   </div>
