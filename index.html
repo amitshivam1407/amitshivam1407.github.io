@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Amit Shivam</title>
-<meta name="description" content="Postdoctoral researcher in guidance, control and autonomy for UAVs and robots, University of Porto.">
+<meta name="description" content="Amit Shivam — postdoctoral researcher at the University of Porto. Guidance and control for real-world autonomy, UAVs, airborne wind energy and robotics.">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F5F3EC; --surface:#FFFFFF; --band:#ECE9DF; --fg:#0F1B2D; --muted:#4F5B6B;
-  --line:#D6D2C4; --accent:#C2410C; --accent-fg:#FFFFFF; --teal:#0B6B73; --field:#9FA9B8;
-  --media-bg:#FFFFFF; --focus:#0B6B73;
+  --bg:#F4F7FA; --surface:#FFFFFF; --band:#E9F0F5; --fg:#0B1F33; --muted:#526579;
+  --line:#D9E3EB; --accent:#D65A31; --accent-fg:#FFFFFF; --teal:#087E8B; --field:#8DA6BC;
+  --media-bg:#FFFFFF; --focus:#087E8B;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -64,7 +64,7 @@ sub{font-size:.7em;line-height:0}
 .hero{position:relative;overflow:hidden;padding-block:clamp(2.2rem,6vw,4.5rem) clamp(1.5rem,4vw,2.5rem);
   margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.field{position:absolute;inset:0;color:var(--field);opacity:.9;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.22) 30%,#000 62%);mask-image:linear-gradient(90deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.22) 30%,#000 62%)}
+.field{position:absolute;inset:0;color:var(--field);opacity:.52;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.22) 30%,#000 62%);mask-image:linear-gradient(90deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.22) 30%,#000 62%)}
 .field svg{width:100%;height:100%}
 .hero-in{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
 .hero-text,.hero-photo{min-width:0}
@@ -79,6 +79,12 @@ sub{font-size:.7em;line-height:0}
 .hero-photo img{width:100%;height:auto}
 figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"IBM Plex Mono",ui-monospace,monospace}
 
+.about-layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(240px,.85fr);gap:clamp(1.5rem,5vw,4rem);align-items:start}
+.about-layout p{max-width:68ch}
+.about-aside{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:1.35rem}
+.about-aside strong{display:block;font-size:1.1rem;margin-bottom:.6rem}
+.about-aside p{color:var(--muted)}
+.about-section{border-bottom:1px solid var(--line)}
 /* facts */
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:.5rem}
 .facts>div{padding:1.1rem 1rem;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -136,7 +142,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 .small{margin-top:2rem;font-size:.8rem;opacity:.65;font-family:"IBM Plex Mono",ui-monospace,monospace}
 
 @media (max-width:860px){
-  .hero-in,.feature{grid-template-columns:1fr}
+  .hero-in,.feature,.about-layout{grid-template-columns:1fr}
   .feature.flip .f-text{order:1}.feature.flip .f-media{order:2}
   .grid{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:1fr 1fr}
@@ -159,6 +165,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div class="wrap nav-in">
     <a class="brand" href="#top">Amit Shivam</a>
     <nav aria-label="Sections">
+      <a href="#about">About</a>
       <a href="#featured">Featured work</a>
       <a href="#research">Research</a>
       <a href="#industry">Industry</a>
@@ -174,8 +181,8 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div class="wrap hero-in">
     <div class="hero-text">
       <p class="kicker">Postdoctoral researcher · University of Porto, SYSTEC-ISR</p>
-      <h1>Guidance, estimation and control, from theory to flight.</h1>
-      <p class="lede">I develop guidance laws, safety filters and adaptive estimators with provable guarantees, then validate them on fixed-wing aircraft, multirotors and a racing-car testbed. Ph.D., Indian Institute of Science (2024).</p>
+      <h1>Guidance and Control to Real-World Autonomy.</h1>
+      <p class="lede">I develop guidance, control and adaptive estimation methods for UAVs and autonomous robotic systems, connecting convergence and feasibility analysis with simulation, embedded implementation and experimental testing.</p>
       <div class="cta">
         <a class="btn primary" href="#featured">See featured work</a>
         <a class="btn" href="https://sites.google.com/view/amit-shivam/home">Academic site and CV</a>
@@ -195,56 +202,36 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div><span class="num">M.Sc. thesis</span><span class="lab">currently supervising</span></div>
 </section>
 
+<section id="about" class="wrap block about-section">
+  <div class="sec-head">
+    <p class="kicker">About</p>
+    <h2>Research and engineering, from guidance design to real systems</h2>
+  </div>
+  <div class="about-layout">
+    <div>
+      <p>I am a postdoctoral researcher at SYSTEC–ISR, University of Porto, Portugal. I received my Ph.D. in Aerospace Engineering from the Indian Institute of Science, Bengaluru, in 2024, where my research focused on vector-field guidance for autonomous path following.</p>
+      <p>My research covers geometric guidance, constrained path following, robust and safety-critical control, and adaptive state estimation. Current applications include fixed-wing UAVs, standoff target tracking, multi-UAV coordination, airborne wind energy, and autonomous racing robots.</p>
+      <p>I have worked at the Indian Institute of Science, Politecnico di Milano and the University of Porto. My work connects theoretical analysis with numerical studies, flight-testing activities and real-time implementation. I also supervise GPS-denied nano-UAV navigation research.</p>
+    </div>
+    <aside class="about-aside" aria-label="Research focus">
+      <span class="tag">Research focus</span>
+      <strong>Guidance · Control · Estimation</strong>
+      <p>Unmanned aircraft, airborne wind energy and autonomous robotics.</p>
+      <a href="https://sites.google.com/view/amit-shivam/home">Academic profile and CV →</a>
+    </aside>
+  </div>
+</section>
+
 <section id="featured" class="wrap block">
   <div class="sec-head">
     <p class="kicker">Featured work</p>
-    <h2>Four projects, from nano-UAV navigation to a published guidance law</h2>
+    <h2>Selected research: guidance, boundary surveillance, racing safety and nano-UAV navigation</h2>
   </div>
 
   <article class="feature">
     <div class="f-text">
-      <p class="tag">Supervised M.Sc. thesis · in progress</p>
-      <h3>CrazyNaV: vision-guided navigation for nano UAVs without GPS</h3>
-      <p>Indoor navigation for Crazyflie nano quadrotors that have no GPS and little onboard compute. The thesis is by <strong>Tiago Vieira</strong>, whom I supervise: <em>"CRAZYNaV: Vision-Guided Navigation Planning in GPS-Denied Environment for Crazyflies."</em></p>
-      <p>The work is organised as one perception → estimation → planning → control pipeline. The research focus is the estimation stage: fusing landmark detections, distance sensing and the frontal camera into a state estimate whose noise statistics are adapted online, because vision measurements are noisy in ways that change with distance, lighting and motion. The pipeline is developed in Gazebo with a ROS bridge before hardware.</p>
-      <ul class="chips">
-        <li>Crazyflie</li><li>Gazebo + ROS</li><li>Landmark detection</li><li>Adaptive state estimation</li><li>GPS-denied</li>
-      </ul>
-      <p class="status">Status: pipeline and simulation set-up defined; flight results will be added when the thesis is complete.</p>
-    </div>
-    <div class="f-media">
-      <figure>
-        <img src="assets/crazynav_pipeline.jpg" alt="CrazyNaV pipeline diagram: perception, estimation, planning, control and Crazyflie actuation, closed by a real-time feedback loop" loading="lazy">
-        <figcaption>The perception–estimation–planning–control pipeline. The outlined stage, estimation, is the research focus.</figcaption>
-      </figure>
-    </div>
-  </article>
-
-  <article class="feature flip">
-    <div class="f-text">
-      <p class="tag">TrustRobotics Challenge 2026 · finalist</p>
-      <h3>LACART: a safety filter that sees one step ahead</h3>
-      <p>A lookahead-augmented control-barrier / control-Lyapunov-function quadratic program for a unicycle. Moving the control point to a body-fixed lookahead position makes the turn rate appear in the barrier derivative, so a single QP can enforce track limits while a CLF with slack handles tracking.</p>
-      <p>It runs on a 1:43-scale racing car with overhead vision (OpenCV colour segmentation), UDP state streaming and Bluetooth LE to an ESP32-C3 on the car. Team LACART was selected as a finalist; the student-led hardware implementation is developed under my supervision with the Up2Speed project at FEUP.</p>
-      <dl class="metrics">
-        <div><dt>Loop rate</dt><dd>25 Hz</dd></div>
-        <div><dt>QP solve, mean</dt><dd>7.49 ms</dd></div>
-        <div><dt>State age, mean</dt><dd>62.44 ms</dd></div>
-      </dl>
-      <p class="status">Reported limits: steering saturation, communication delay and contact with the track boundary.</p>
-    </div>
-    <div class="f-media">
-      <figure>
-        <img src="assets/lacart_finalist.jpg" alt="Team LACART finalist banner with the hardware test track and two 1:43 experimental cars, University of Porto FEUP, SYSTEC and Up2Speed logos" loading="lazy">
-        <figcaption>Team LACART: hardware test track and experimental vehicles.</figcaption>
-      </figure>
-    </div>
-  </article>
-
-  <article class="feature">
-    <div class="f-text">
       <p class="tag">IFAC World Congress 2026 · accepted</p>
-      <h3>Variable L<sub>0</sub> guidance: a larger envelope for path following</h3>
+      <h3>Variable L<sub>0</sub> guidance for fixed-wing UAVs</h3>
       <p>A vector-field guidance strategy whose look-ahead distance varies in time, which widens the operating envelope in which a UAV converges onto a path. The paper is accepted; fixed-wing flight experiments are under way using an ArduPilot-based autopilot.</p>
       <p class="cite">A. Shivam, M. C. R. M. Fernandes, F. A. C. C. Fontes, L. Fagiano, <em>Variable L<sub>0</sub> Guidance Strategy: Enlarged Operational Envelope and Path-Following</em>, IFAC World Congress, 2026.</p>
       <div class="cta left">
@@ -267,14 +254,54 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <article class="feature flip">
     <div class="f-text">
       <p class="tag">Journal of Guidance, Control, and Dynamics · published</p>
-      <h3>Lamé-curve guidance for path following</h3>
-      <p>A guidance law built on Lamé curves, which interpolate smoothly between circles and rounded-rectangle paths. It is published in JGCD. The next version targets <strong>3D constrained scenarios</strong> for restricted aerospace navigation and planning, where path shape and vehicle limits have to be handled together.</p>
+      <h3>Lamé-curve guidance for boundary surveillance</h3>
+      <p>A vector-field guidance approach using Lamé curves to generate and follow smooth enclosing paths for boundary surveillance. The work is published in JGCD. Ongoing research considers <strong>3D constrained navigation</strong>, integrating path geometry with vehicle maneuverability limits.</p>
       <ul class="chips"><li>Vector-field guidance</li><li>Lamé curves</li><li>JGCD</li><li>Next: 3D constraints</li></ul>
     </div>
     <div class="f-media">
       <figure>
         <img src="assets/uav_in_flight.jpg" alt="A fixed-wing UAV in flight above a rural test field" loading="lazy">
         <figcaption>Outdoor test field with the aircraft in flight.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="f-text">
+      <p class="tag">TrustRobotics Challenge 2026 · finalist</p>
+      <h3>LACART: safety-critical control for autonomous racing robots</h3>
+      <p>A lookahead-augmented control-barrier / control-Lyapunov-function quadratic program for a unicycle. Moving the control point to a body-fixed lookahead position makes the turn rate appear in the barrier derivative, so a single QP can enforce track limits while a CLF with slack handles tracking.</p>
+      <p>It runs on a 1:43-scale racing car with overhead vision (OpenCV colour segmentation), UDP state streaming and Bluetooth LE to an ESP32-C3 on the car. Team LACART was selected as a finalist; the student-led hardware implementation is developed under my supervision with the Up2Speed project at FEUP.</p>
+      <dl class="metrics">
+        <div><dt>Loop rate</dt><dd>25 Hz</dd></div>
+        <div><dt>QP solve, mean</dt><dd>7.49 ms</dd></div>
+        <div><dt>State age, mean</dt><dd>62.44 ms</dd></div>
+      </dl>
+      <p class="status">Reported limits: steering saturation, communication delay and contact with the track boundary.</p>
+    </div>
+    <div class="f-media">
+      <figure>
+        <img src="assets/lacart_finalist.jpg" alt="Team LACART finalist banner with the hardware test track and two 1:43 experimental cars, University of Porto FEUP, SYSTEC and Up2Speed logos" loading="lazy">
+        <figcaption>Team LACART: hardware test track and experimental vehicles.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="feature flip">
+    <div class="f-text">
+      <p class="tag">Supervised M.Sc. thesis · in progress</p>
+      <h3>CrazyNaV: vision-based navigation for GPS-denied nano UAVs</h3>
+      <p>Indoor navigation for Crazyflie nano quadrotors that have no GPS and little onboard compute. The thesis is by <strong>Tiago Vieira</strong>, whom I supervise: <em>"CRAZYNaV: Vision-Guided Navigation Planning in GPS-Denied Environment for Crazyflies."</em></p>
+      <p>The work is organised as one perception → estimation → planning → control pipeline. The research focus is the estimation stage: fusing landmark detections, distance sensing and the frontal camera into a state estimate whose noise statistics are adapted online, because vision measurements are noisy in ways that change with distance, lighting and motion. The pipeline is developed in Gazebo with a ROS bridge before hardware.</p>
+      <ul class="chips">
+        <li>Crazyflie</li><li>Gazebo + ROS</li><li>Landmark detection</li><li>Adaptive state estimation</li><li>GPS-denied</li>
+      </ul>
+      <p class="status">Status: pipeline and simulation set-up defined; flight results will be added when the thesis is complete.</p>
+    </div>
+    <div class="f-media">
+      <figure>
+        <img src="assets/crazynav_pipeline.jpg" alt="CrazyNaV pipeline diagram: perception, estimation, planning, control and Crazyflie actuation, closed by a real-time feedback loop" loading="lazy">
+        <figcaption>The perception–estimation–planning–control pipeline. The outlined stage, estimation, is the research focus.</figcaption>
       </figure>
     </div>
   </article>
@@ -290,7 +317,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <div class="card"><h3>Airborne wind energy</h3><p>Set-stabilising guidance for tethered flight, where the target is a region of the state space, not a single trajectory.</p></div>
     <div class="card"><h3>Sliding-mode and prescribed-performance control</h3><p>Hybrid-gain finite-time controllers with explicit feasibility under bounded disturbances and input limits. <a href="https://github.com/amitshivam1407/safe-smc">SAFE-SMC</a> manuscript in preparation.</p></div>
     <div class="card"><h3>Safety-critical control</h3><p>CBF-CLF quadratic programs with lookahead augmentation, validated on a physical vehicle in real time.</p></div>
-    <div class="card"><h3>Estimation</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
+    <div class="card"><h3>Adaptive Estimation in Autonomous Systems</h3><p>Online covariance adaptation and lifted residual modeling for Kalman filtering (CALM-KF), with potential extensions to nonlinear state estimation. Research in preparation.</p></div>
     <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation built around adaptive state estimation, through the CrazyNaV thesis.</p></div>
   </div>
   <p class="more">Full publication list and CV on the <a href="https://sites.google.com/view/amit-shivam/home">academic site</a>.</p>
@@ -303,9 +330,9 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       <h2>What I bring to aerospace and robotics teams</h2>
     </div>
     <div class="grid three">
-      <div class="card"><h3>Flight testing</h3><p>Hand-launched fixed-wing and multirotor trials. Variable look-ahead guidance implemented in the ArduPilot C++ source and tested in SITL and HITL, with ground-station telemetry review.</p></div>
+      <div class="card"><h3>Flight testing</h3><p>Fixed-wing and multirotor flight-testing experience, ArduPilot-based guidance implementation, SITL studies and ground-station telemetry analysis. Hardware validation status is reported in the corresponding project.</p></div>
       <div class="card"><h3>Real-time implementation</h3><p>Safety filters solved at 25 Hz with a 7.5 ms mean QP time, with measured delay budgets rather than assumed ones.</p></div>
-      <div class="card"><h3>Perception in the loop</h3><p>Overhead vision with OpenCV, UDP and Bluetooth LE links, and ROS/Gazebo simulation for nano-UAV navigation.</p></div>
+      <div class="card"><h3>Perception and navigation integration</h3><p>Overhead vision, OpenCV, UDP and Bluetooth LE communication for racing robots; ROS/Gazebo simulation work for nano-UAV navigation.</p></div>
       <div class="card"><h3>Guidance, navigation and control</h3><p>Path following, constrained control, estimation and mission-level autonomy for UAVs, with proofs and tuning evidence together.</p></div>
       <div class="card"><h3>Honest validation</h3><p>Reported limits next to reported results: saturation, delay and boundary contact are stated, not hidden.</p></div>
       <div class="card"><h3>Mentoring engineers</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
