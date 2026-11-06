@@ -68,6 +68,7 @@ sub{font-size:.7em;line-height:0}
 .hero a:not(.btn){color:var(--teal)}
 .field{position:absolute;inset:0;pointer-events:none;color:var(--field)}
 .field svg{width:100%;height:100%;display:block}
+.field canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-in{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(3.5rem,6vw,4.5rem);align-items:center}
 .hero-text,.hero-photo{min-width:0}
 .lede{font-size:1.1rem;color:var(--muted);max-width:46ch;margin-top:1.1rem}
@@ -106,6 +107,20 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 .f-media figure img{width:100%;height:auto;background:var(--media-bg)}
 .f-media figure.dark img{background:#000}
 .f-media video{width:100%;height:auto;background:#000;aspect-ratio:16/9}
+.f-media .arc{position:relative;aspect-ratio:16/9;background:#0A1220;container-type:inline-size;overflow:hidden}
+.f-media .arc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.arc canvas,.arc .arc-text{display:none}
+.arc.live img{display:none}
+.arc.live canvas{display:block;width:100%;height:100%}
+.arc.live .arc-text{display:block;position:absolute;left:0;top:0;bottom:0;width:60%;padding:5.5cqw 0 0 5cqw;background:linear-gradient(90deg,rgba(10,18,32,.9),rgba(10,18,32,0));color:#F3F6FB;pointer-events:none}
+.arc-text h4{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:4.2cqw;line-height:1.15;margin:0 0 2.2cqw;text-wrap:balance}
+.arc-text h4::after{content:"";display:block;width:9cqw;height:.5cqw;background:#FF8A4C;margin-top:2cqw}
+.arc-text p{margin:0;font-size:2.4cqw;line-height:1.4;color:#B9C4D4}
+.arc-links{list-style:none;margin:0;padding:.85rem .9rem 0;display:flex;flex-wrap:wrap;gap:.45rem}
+.arc-links a{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;border:1px solid var(--line);border-radius:999px;padding:.3rem .75rem;text-decoration:none;color:var(--fg);background:var(--surface)}
+.arc-links a::before{content:"";border-left:7px solid var(--accent);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.arc-links a:hover,.arc-links a:focus-visible,.arc-links a.on{border-color:var(--teal);color:var(--teal)}
+@media (prefers-reduced-motion:reduce){.arc-links a{transition:none}}
 .chips{list-style:none;padding:0;margin:1rem 0;display:flex;flex-wrap:wrap;gap:.45rem}
 .chips li{font-size:.72rem;border:1px solid var(--line);background:var(--surface);padding:.25rem .6rem;border-radius:999px;color:var(--muted)}
 .status{font-size:.78rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:.7rem;margin-top:1rem}
@@ -174,6 +189,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
 .poster-link{position:relative;display:block;line-height:0}
 .poster-link img{width:100%;height:auto}
+.poster-link .arc-text{line-height:1.2}
 .poster-link .play{position:absolute;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.35);transition:transform .15s}
 .poster-link .play::after{content:"";position:absolute;left:23px;top:17px;border-left:18px solid var(--accent-fg);border-top:12px solid transparent;border-bottom:12px solid transparent}
 .poster-link:hover .play{transform:scale(1.08)}
@@ -198,7 +214,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
 <main id="top">
 <section class="hero">
-  <div class="field" aria-hidden="true"><svg id="fieldsvg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg></div>
+  <div class="field" aria-hidden="true"><svg id="fieldsvg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg><canvas id="heroFlow"></canvas></div>
   <div class="wrap hero-in">
     <div class="hero-text">
       <p class="kicker">Postdoctoral researcher · University of Porto · Ph.D., IISc 2024</p>
@@ -338,10 +354,17 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <div class="f-media">
       <figure class="video">
         <a class="poster-link" href="https://www.youtube.com/watch?v=Qri-2F3kL0E" aria-label="Watch the Lamé-curve surveillance video on YouTube">
-          <img src="assets/lame_boundary_poster.jpg" alt="Poster: Lamé-curve guidance for boundary surveillance, a vector field converging onto a Lamé curve that circumscribes a rectangular boundary" loading="lazy">
+          <div class="arc" id="lameAnim">
+            <img src="assets/lame_boundary_poster.jpg" alt="Poster: Lamé-curve guidance for boundary surveillance, a vector field converging onto a Lamé curve that circumscribes a rectangular boundary" loading="lazy">
+            <canvas aria-hidden="true"></canvas>
+            <div class="arc-text" aria-hidden="true">
+              <h4>Lamé-curve guidance for boundary surveillance</h4>
+              <p>Circle to rounded rectangle, one smooth family</p>
+            </div>
+          </div>
           <span class="play" aria-hidden="true"></span>
         </a>
-        <figcaption>Click to watch the demonstration video on YouTube.</figcaption>
+        <figcaption>The Lamé exponent n sweeps the path from a circle toward a rounded rectangle. Click to watch the demonstration video on YouTube.</figcaption>
       </figure>
     </div>
   </article>
@@ -349,21 +372,32 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <article class="feature">
     <div class="f-text">
       <p class="tag">Journal of Guidance, Control, and Dynamics · published 2023</p>
-      <h3>Arcsine vector fields for path following</h3>
-      <p>A nonlinear vector-field guidance law for UAV path following, with a formal convergence analysis and a lower turn-rate demand. The video playlist shows indoor Crazyflie flights in a motion-capture facility, following six path types: straight line, circular orbit, ellipse, parabola, a general-curvature path and the Lamé curve.</p>
+      <h3>Arcsine vector field guidance for path following</h3>
+      <p>A nonlinear vector-field guidance law for UAV path following, with a formal convergence analysis and a lower turn-rate demand. Each video shows an indoor Crazyflie flight in a motion-capture facility, following one path type: straight line, circle, ellipse, sinusoid or parabola.</p>
       <p class="cite">A. Shivam and A. Ratnoo, <em>Arcsine Vector Field for Path Following Guidance</em>, J. Guidance, Control, and Dynamics, 46(12):2409&ndash;2420, 2023.</p>
       <div class="cta left">
-        <a class="btn primary" href="https://www.youtube.com/playlist?list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8">Watch the playlist</a>
-        <a class="btn" href="https://doi.org/10.2514/1.G007562">Paper (JGCD)</a>
+        <a class="btn primary" href="https://doi.org/10.2514/1.G007562">Paper (JGCD)</a>
+        <a class="btn" href="https://www.youtube.com/playlist?list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8">Full playlist</a>
       </div>
     </div>
     <div class="f-media">
       <figure class="video">
-        <a class="poster-link" href="https://www.youtube.com/playlist?list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8" aria-label="Watch the Arcsine vector-field path-following playlist on YouTube">
-          <img src="assets/arcsine_poster.jpg" alt="Poster: Arcsine vector fields for path following, an illustrative vector field converging onto an elliptic path, with labels for the six path types in the playlist" loading="lazy">
-          <span class="play" aria-hidden="true"></span>
-        </a>
-        <figcaption>Click to watch the six indoor flight-test videos on YouTube.</figcaption>
+        <div class="arc" id="arcAnim">
+          <img src="assets/arcsine_poster.jpg" alt="Poster: Arcsine vector field guidance for path following, a vector field converging onto an elliptic path" loading="lazy">
+          <canvas aria-hidden="true"></canvas>
+          <div class="arc-text" aria-hidden="true">
+            <h4>Arcsine vector field guidance for path following</h4>
+            <p>Indoor Crazyflie flights, motion capture</p>
+          </div>
+        </div>
+        <ul class="arc-links" id="arcLinks" aria-label="Flight-test videos on YouTube">
+          <li><a href="https://www.youtube.com/watch?v=Uhh3g2hVI7s&amp;list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8&amp;index=6" target="_blank" rel="noopener">Line</a></li>
+          <li><a href="https://www.youtube.com/watch?v=jGWwOX6Xfb4&amp;list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8&amp;index=5" target="_blank" rel="noopener">Circle</a></li>
+          <li><a href="https://www.youtube.com/watch?v=4vsZ38ADp50&amp;list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8&amp;index=4" target="_blank" rel="noopener">Ellipse</a></li>
+          <li><a href="https://www.youtube.com/watch?v=4vsZ38ADp50&amp;list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8&amp;index=4" target="_blank" rel="noopener">Sinusoidal</a></li>
+          <li><a href="https://www.youtube.com/watch?v=_esVqlkgupA&amp;list=PLp-Q9ZWhl2Fhxj_kpG6UZBg1IUOKeq_M8&amp;index=2" target="_blank" rel="noopener">Parabola</a></li>
+        </ul>
+        <figcaption>Hover a path name to preview its vector field; click to watch the flight test on YouTube.</figcaption>
       </figure>
     </div>
   </article>
@@ -453,6 +487,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     function grad(x,y){var u=(x-cx)/a,v=(y-cy)/b;return [n*Math.sign(u)*Math.pow(Math.abs(u),n-1)/a, n*Math.sign(v)*Math.pow(Math.abs(v),n-1)/b];}
     function dist(x,y){var g=grad(x,y),m=Math.hypot(g[0],g[1])||1e-9;return V(x,y)/m;}
     function vec(x,y){var g=grad(x,y),m=Math.hypot(g[0],g[1])||1e-9,d=V(x,y)/m,k=Math.tanh(d/60),nx=g[0]/m,ny=g[1]/m,tx=-ny,ty=nx,c=Math.sqrt(Math.max(0,1-k*k));return [-k*nx+c*tx,-k*ny+c*ty];}
+    window.__heroField={W:W,H:H,vec:vec,dist:dist};
     var out='<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--teal)"/></marker></defs>';
     out+='<g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none" marker-end="url(#ah)" style="color:var(--field)">';
     var step=32;
@@ -503,6 +538,161 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   var tm;function later(){clearTimeout(tm);tm=setTimeout(draw,120);}
   draw();window.addEventListener('resize',later);window.addEventListener('load',draw);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+})();
+</script>
+<script>
+/* Arcsine card: animated vector field cycling through the five path types */
+(function(){
+var box=document.getElementById('arcAnim');if(!box)return;
+var cv=box.querySelector('canvas'),ctx=cv&&cv.getContext&&cv.getContext('2d');if(!ctx)return;
+var links=[].slice.call(document.querySelectorAll('#arcLinks a'));
+var WU=160,HU=90,sc=1,Lv=14,SPEED=17,N=150;
+function fit(){var r=box.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);cv.width=Math.max(2,Math.round(r.width*d));cv.height=Math.round(cv.width*9/16);sc=cv.width/WU;}
+function sample(f,a,b,st){var o=[];for(var x=a;x<=b;x+=st)o.push(f(x));return o;}
+var paths=[
+{V:function(x,y){return(y-50)-0.22*(x-100);},G:function(){return[-0.22,1];},dir:-1,
+ pts:function(){return sample(function(x){return[x,50+0.22*(x-100)];},-5,165,4);}},
+{V:function(x,y){return Math.hypot(x-108,y-46)-26;},G:function(x,y){var r=Math.hypot(x-108,y-46)||1e-6;return[(x-108)/r,(y-46)/r];},dir:1,
+ pts:function(){return sample(function(t){return[108+26*Math.cos(t),46+26*Math.sin(t)];},0,6.2832,0.05);}},
+{V:function(x,y){return Math.pow((x-108)/40,2)+Math.pow((y-46)/24,2)-1;},G:function(x,y){return[2*(x-108)/1600,2*(y-46)/576];},dir:1,
+ pts:function(){return sample(function(t){return[108+40*Math.cos(t),46+24*Math.sin(t)];},0,6.2832,0.05);}},
+{V:function(x,y){return y-46-9*Math.sin(0.09*(x-60));},G:function(x){return[-0.81*Math.cos(0.09*(x-60)),1];},dir:-1,
+ pts:function(){return sample(function(x){return[x,46+9*Math.sin(0.09*(x-60))];},-5,165,3);}},
+{V:function(x,y){return y-16-0.012*Math.pow(x-108,2);},G:function(x){return[-0.024*(x-108),1];},dir:-1,
+ pts:function(){return sample(function(x){return[x,16+0.012*Math.pow(x-108,2)];},-5,165,3);}}
+];
+paths.forEach(function(p){p.line=p.pts();});
+function field(p,x,y){var g=p.G(x,y),m=Math.hypot(g[0],g[1])||1e-6,d=p.V(x,y)/m,k=Math.tanh(d/Lv),nx=g[0]/m,ny=g[1]/m,tx=-ny*p.dir,ty=nx*p.dir,c=Math.sqrt(Math.max(0,1-k*k));return[-k*nx+c*tx,-k*ny+c*ty,d];}
+var P=[];
+function spawn(q,anywhere){q.x=Math.random()*(WU+10)-5;q.y=Math.random()*(HU+10)-5;q.age=0;q.life=4+Math.random()*5;q.tr=[[q.x,q.y]];}
+for(var i=0;i<N;i++){var q={};spawn(q);q.age=Math.random()*q.life;P.push(q);}
+function step(cur,dt){
+ for(var i=0;i<P.length;i++){var q=P[i],v=field(cur,q.x,q.y);
+  q.x+=v[0]*SPEED*dt;q.y+=v[1]*SPEED*dt;q.age+=dt;q.tr.push([q.x,q.y]);if(q.tr.length>16)q.tr.shift();
+  if(q.age>q.life||q.x<-8||q.x>WU+8||q.y<-8||q.y>HU+8)spawn(q);}
+}
+function arrows(p,alpha){
+ if(alpha<=0.01)return;ctx.lineWidth=Math.max(1,sc*0.18);
+ for(var gx=7;gx<WU;gx+=9)for(var gy=6;gy<HU;gy+=9){
+  var v=field(p,gx,gy),f=0.3+0.7*Math.exp(-Math.abs(v[2])/26),L=3.4,
+  x1=gx-v[0]*L/2,y1=gy-v[1]*L/2,x2=gx+v[0]*L/2,y2=gy+v[1]*L/2,an=Math.atan2(v[1],v[0]),h=1.1;
+  ctx.strokeStyle='rgba(95,198,207,'+(alpha*0.34*f)+')';ctx.beginPath();
+  ctx.moveTo(x1*sc,y1*sc);ctx.lineTo(x2*sc,y2*sc);
+  ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an-0.5))*sc,(y2-h*Math.sin(an-0.5))*sc);
+  ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an+0.5))*sc,(y2-h*Math.sin(an+0.5))*sc);ctx.stroke();}
+}
+function trace(p,alpha){
+ if(alpha<=0.01)return;ctx.lineJoin='round';ctx.beginPath();
+ p.line.forEach(function(a,i){i?ctx.lineTo(a[0]*sc,a[1]*sc):ctx.moveTo(a[0]*sc,a[1]*sc);});
+ ctx.strokeStyle='rgba(255,138,76,'+(0.22*alpha)+')';ctx.lineWidth=sc*2.4;ctx.stroke();
+ ctx.strokeStyle='rgba(255,138,76,'+alpha+')';ctx.lineWidth=sc*0.95;ctx.stroke();
+}
+function draw(prev,cur,f){
+ ctx.fillStyle='#0A1220';ctx.fillRect(0,0,cv.width,cv.height);
+ arrows(prev,1-f);arrows(cur,f);
+ ctx.lineCap='round';
+ for(var i=0;i<P.length;i++){var q=P[i],t=q.tr,n=t.length;if(n<2)continue;
+  var fade=Math.min(1,q.age/0.6)*Math.min(1,(q.life-q.age)/0.8);
+  ctx.lineWidth=sc*0.5;
+  ctx.strokeStyle='rgba(95,198,207,'+(0.2*fade)+')';ctx.beginPath();ctx.moveTo(t[0][0]*sc,t[0][1]*sc);
+  for(var k=1;k<n>>1;k++)ctx.lineTo(t[k][0]*sc,t[k][1]*sc);ctx.stroke();
+  ctx.strokeStyle='rgba(95,198,207,'+(0.85*fade)+')';ctx.beginPath();ctx.moveTo(t[n>>1][0]*sc,t[n>>1][1]*sc);
+  for(var k2=(n>>1)+1;k2<n;k2++)ctx.lineTo(t[k2][0]*sc,t[k2][1]*sc);ctx.stroke();}
+ trace(prev,1-f);trace(cur,f);
+}
+var idx=1,prevIdx=1,tSwitch=0,held=false,running=false,last=0,reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function mark(){links.forEach(function(a,i){a.classList.toggle('on',i===idx);});}
+function go(i,now){if(i===idx)return;prevIdx=idx;idx=i;tSwitch=now||performance.now();mark();if(reduce)still();}
+function frame(now){
+ if(!running)return;var dt=Math.min(0.05,(now-last)/1000||0.016);last=now;
+ if(!held&&now-tSwitch>5200)go((idx+1)%paths.length,now);
+ var f=Math.min(1,(now-tSwitch)/900);
+ step(paths[idx],dt);draw(paths[prevIdx],paths[idx],f);requestAnimationFrame(frame);
+}
+function still(){fit();for(var i=0;i<260;i++)step(paths[idx],0.04);draw(paths[idx],paths[idx],1);}
+function start(){if(running||reduce)return;running=true;last=performance.now();requestAnimationFrame(frame);}
+function stop(){running=false;}
+fit();mark();box.classList.add('live');
+window.addEventListener('resize',function(){fit();if(reduce)still();});
+links.forEach(function(a,i){
+ a.addEventListener('mouseenter',function(){held=true;go(i);});
+ a.addEventListener('focus',function(){held=true;go(i);});
+ a.addEventListener('mouseleave',function(){held=false;tSwitch=performance.now();});
+ a.addEventListener('blur',function(){held=false;tSwitch=performance.now();});
+});
+if(reduce){still();}
+else if('IntersectionObserver' in window){new IntersectionObserver(function(e){e[0].isIntersecting?start():stop();},{threshold:0.1}).observe(box);}
+else start();
+})();
+</script>
+<script>
+/* Hero: moving particles flowing along the same field as the static background */
+(function(){
+var cv=document.getElementById('heroFlow');if(!cv)return;var ctx=cv.getContext('2d');if(!ctx)return;
+var hero=document.querySelector('.hero'),P=[],W=0,H=0,dpr=1,running=false,last=0;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function F(){return window.__heroField;}
+function size(){var f=F();if(!f)return false;var d=Math.min(window.devicePixelRatio||1,2);
+ if(f.W!==W||f.H!==H||dpr!==d){W=f.W;H=f.H;dpr=d;cv.width=Math.round(W*d);cv.height=Math.round(H*d);
+  var n=Math.min(240,Math.round(W*H/6500));while(P.length<n){var q={};spawn(q);q.age=Math.random()*q.life;P.push(q);}P.length=n;}
+ return true;}
+function spawn(q){q.x=Math.random()*W;q.y=Math.random()*H;q.age=0;q.life=3+Math.random()*4;q.tr=[[q.x,q.y]];}
+function frame(now){
+ if(!running)return;var dt=Math.min(0.05,(now-last)/1000||0.016);last=now;
+ if(!size()){requestAnimationFrame(frame);return;}
+ var f=F();ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);ctx.lineCap='round';
+ for(var i=0;i<P.length;i++){var q=P[i],v=f.vec(q.x,q.y),dd=Math.abs(f.dist(q.x,q.y));
+  q.x+=v[0]*70*dt;q.y+=v[1]*70*dt;q.age+=dt;q.tr.push([q.x,q.y]);if(q.tr.length>14)q.tr.shift();
+  if(q.age>q.life||q.x<-10||q.x>W+10||q.y<-10||q.y>H+10){spawn(q);continue;}
+  var near=Math.exp(-dd/110),fade=Math.min(1,q.age/0.5)*Math.min(1,(q.life-q.age)/0.7),a=(0.18+0.75*near)*fade,t=q.tr,n=t.length;if(n<2)continue;
+  ctx.lineWidth=1.2+1.6*near;ctx.strokeStyle='rgba(95,198,207,'+a+')';ctx.beginPath();ctx.moveTo(t[0][0],t[0][1]);
+  for(var k=1;k<n;k++)ctx.lineTo(t[k][0],t[k][1]);ctx.stroke();}
+ requestAnimationFrame(frame);
+}
+function start(){if(running||reduce)return;running=true;last=performance.now();requestAnimationFrame(frame);}
+if('IntersectionObserver' in window&&hero){new IntersectionObserver(function(e){if(e[0].isIntersecting)start();else running=false;},{threshold:0.05}).observe(hero);}else start();
+})();
+</script>
+<script>
+/* Lamé card: field converging onto a Lamé curve whose exponent n sweeps circle -> rounded rectangle */
+(function(){
+var box=document.getElementById('lameAnim');if(!box)return;
+var cv=box.querySelector('canvas'),ctx=cv&&cv.getContext&&cv.getContext('2d');if(!ctx)return;
+var WU=160,HU=90,sc=1,Lv=14,N=150,CX=108,CY=46,A=40,B=25,n=2,P=[];
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fit(){var r=box.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);cv.width=Math.max(2,Math.round(r.width*d));cv.height=Math.round(cv.width*9/16);sc=cv.width/WU;}
+function Vf(x,y){return Math.pow(Math.abs((x-CX)/A),n)+Math.pow(Math.abs((y-CY)/B),n)-1;}
+function Gf(x,y){var u=(x-CX)/A,v=(y-CY)/B;return[n*Math.sign(u)*Math.pow(Math.abs(u),n-1)/A,n*Math.sign(v)*Math.pow(Math.abs(v),n-1)/B];}
+function field(x,y){var g=Gf(x,y),m=Math.hypot(g[0],g[1])||1e-6,d=Vf(x,y)/m,k=Math.tanh(d/Lv),nx=g[0]/m,ny=g[1]/m,c=Math.sqrt(Math.max(0,1-k*k));return[-k*nx-c*ny,-k*ny+c*nx,d];}
+function spawn(q){q.x=Math.random()*(WU+10)-5;q.y=Math.random()*(HU+10)-5;q.age=0;q.life=4+Math.random()*5;q.tr=[[q.x,q.y]];}
+for(var i=0;i<N;i++){var q={};spawn(q);q.age=Math.random()*q.life;P.push(q);}
+function step(dt){for(var i=0;i<P.length;i++){var q=P[i],v=field(q.x,q.y);q.x+=v[0]*17*dt;q.y+=v[1]*17*dt;q.age+=dt;q.tr.push([q.x,q.y]);if(q.tr.length>16)q.tr.shift();
+ if(q.age>q.life||q.x<-8||q.x>WU+8||q.y<-8||q.y>HU+8)spawn(q);}}
+function curve(){var o=[],e=2/n;for(var i=0;i<=240;i++){var t=6.2832*i/240,c=Math.cos(t),s=Math.sin(t);o.push([CX+A*Math.sign(c)*Math.pow(Math.abs(c),e),CY+B*Math.sign(s)*Math.pow(Math.abs(s),e)]);}return o;}
+function draw(){
+ ctx.fillStyle='#0A1220';ctx.fillRect(0,0,cv.width,cv.height);ctx.lineWidth=Math.max(1,sc*0.18);
+ for(var gx=7;gx<WU;gx+=9)for(var gy=6;gy<HU;gy+=9){var v=field(gx,gy),f=0.3+0.7*Math.exp(-Math.abs(v[2])/26),L=3.4,x2=gx+v[0]*L/2,y2=gy+v[1]*L/2,an=Math.atan2(v[1],v[0]),h=1.1;
+  ctx.strokeStyle='rgba(95,198,207,'+(0.34*f)+')';ctx.beginPath();ctx.moveTo((gx-v[0]*L/2)*sc,(gy-v[1]*L/2)*sc);ctx.lineTo(x2*sc,y2*sc);
+  ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an-0.5))*sc,(y2-h*Math.sin(an-0.5))*sc);ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an+0.5))*sc,(y2-h*Math.sin(an+0.5))*sc);ctx.stroke();}
+ ctx.lineCap='round';
+ for(var i=0;i<P.length;i++){var q=P[i],t=q.tr,m=t.length;if(m<2)continue;var fade=Math.min(1,q.age/0.6)*Math.min(1,(q.life-q.age)/0.8);
+  ctx.lineWidth=sc*0.5;ctx.strokeStyle='rgba(95,198,207,'+(0.2*fade)+')';ctx.beginPath();ctx.moveTo(t[0][0]*sc,t[0][1]*sc);for(var k=1;k<m>>1;k++)ctx.lineTo(t[k][0]*sc,t[k][1]*sc);ctx.stroke();
+  ctx.strokeStyle='rgba(95,198,207,'+(0.85*fade)+')';ctx.beginPath();ctx.moveTo(t[m>>1][0]*sc,t[m>>1][1]*sc);for(var k2=(m>>1)+1;k2<m;k2++)ctx.lineTo(t[k2][0]*sc,t[k2][1]*sc);ctx.stroke();}
+ // rectangular boundary being circumscribed
+ ctx.setLineDash([sc*1.6,sc*1.6]);ctx.strokeStyle='rgba(243,246,251,0.45)';ctx.lineWidth=Math.max(1,sc*0.22);ctx.strokeRect((CX-A)*sc,(CY-B)*sc,2*A*sc,2*B*sc);ctx.setLineDash([]);
+ var c=curve();ctx.beginPath();c.forEach(function(a,i){i?ctx.lineTo(a[0]*sc,a[1]*sc):ctx.moveTo(a[0]*sc,a[1]*sc);});ctx.closePath();
+ ctx.strokeStyle='rgba(255,138,76,0.22)';ctx.lineWidth=sc*2.4;ctx.stroke();ctx.strokeStyle='#FF8A4C';ctx.lineWidth=sc*0.95;ctx.stroke();
+ ctx.fillStyle='rgba(243,246,251,0.85)';ctx.font=(sc*3.4)+'px "IBM Plex Mono",ui-monospace,monospace';ctx.textAlign='left';ctx.fillText('n = '+n.toFixed(1),(CX-A)*sc,(CY+B+7)*sc);
+}
+var t0=0,running=false,last=0;
+function setN(t){n=2+5*(0.5-0.5*Math.cos(6.2832*t/12));if(n<2.05)n=2;}
+function frame(now){if(!running)return;var dt=Math.min(0.05,(now-last)/1000||0.016);last=now;setN((now-t0)/1000);step(dt);draw();requestAnimationFrame(frame);}
+function still(){fit();n=5;for(var i=0;i<260;i++)step(0.04);draw();}
+fit();box.classList.add('live');
+window.addEventListener('resize',function(){fit();if(reduce)still();});
+if(reduce){still();}
+else if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting){if(!running){running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}}else running=false;},{threshold:0.1}).observe(box);}
+else{running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}
 })();
 </script>
 </body>
