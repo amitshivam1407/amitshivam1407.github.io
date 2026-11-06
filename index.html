@@ -40,7 +40,7 @@ a{color:var(--teal);text-underline-offset:3px}
 a:hover{color:var(--accent)}
 a:focus-visible,.btn:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:500;line-height:1.15;text-wrap:balance;margin:0}
-h1{font-size:clamp(2rem,4.6vw,3.4rem);letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,3.4vw,2.6rem);letter-spacing:-.01em}
 h2{font-size:clamp(1.6rem,3vw,2.2rem)}
 h3{font-size:1.45rem;margin-bottom:.6rem}
 p{margin:0 0 .9rem}
@@ -209,7 +209,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 <section id="featured" class="wrap block">
   <div class="sec-head">
     <p class="kicker">Featured work</p>
-    <h2>From guidance law design to nano-UAV navigation in confined airspace </h2>
+    <h2>From guidance law design to nano&#8209;UAV navigation in confined airspace</h2>
   </div>
 
   <article class="feature">
@@ -273,7 +273,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
           <source src="assets/flight_test_sample.mp4" type="video/mp4">
           Your browser cannot play this video.
         </video>
-        <figcaption>Sample flight-test footage: flight and ground-station telemetry.</figcaption>
+        <figcaption>Sample flight-test footage: hand launch, flight and ground-station telemetry.</figcaption>
       </figure>
     </div>
   </article>
@@ -318,7 +318,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
           <img src="assets/arcsine_poster.jpg" alt="Poster: Arcsine vector fields for path following, an illustrative vector field converging onto an elliptic path, with labels for the six path types in the playlist" loading="lazy">
           <span class="play" aria-hidden="true"></span>
         </a>
-        <figcaption>Click to watch the six indoor flight-test videos on YouTube.</figcaption>
+        <figcaption>Click to watch the six indoor flight-test videos on YouTube. The vector field on the poster is illustrative.</figcaption>
       </figure>
     </div>
   </article>
@@ -338,7 +338,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <div class="card"><h3>Estimation</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
     <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation built around adaptive state estimation, through the CrazyNaV thesis.</p></div>
   </div>
-  <p class="more">Full publication list on <a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a>; <a href="assets/Amit_Shivam_CV.pdf">CV</a>.</p>
+  <p class="more">Full publication list on <a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a>; CV as a <a href="assets/Amit_Shivam_CV.pdf">PDF</a>.</p>
 </section>
 
 <section id="industry" class="band">
@@ -384,7 +384,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <ul class="links">
       <li><a href="mailto:amitshivam@alum.iisc.ac.in">amitshivam@alum.iisc.ac.in</a></li>
-      <li><a href="assets/Amit_Shivam_CV.pdf">CV</a></li>
+      <li><a href="assets/Amit_Shivam_CV.pdf">CV (PDF)</a></li>
       <li><a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a></li>
       <li><a href="https://www.linkedin.com/in/amitshivam1407/">LinkedIn</a></li>
       <li><a href="https://github.com/amitshivam1407">GitHub</a></li>
@@ -410,23 +410,42 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     function vec(x,y){var g=grad(x,y),m=Math.hypot(g[0],g[1])||1e-9,d=V(x,y)/m,k=Math.tanh(d/60),nx=g[0]/m,ny=g[1]/m,tx=-ny,ty=nx,c=Math.sqrt(Math.max(0,1-k*k));return [-k*nx+c*tx,-k*ny+c*ty];}
     var out='<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker><marker id="ah2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--teal)"/></marker></defs>';
     out+='<g stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none" marker-end="url(#ah)" style="color:var(--field)">';
-    var step=34;
+    var step=32;
     for(var x=step/2;x<W;x+=step){for(var y=step/2;y<H;y+=step){
-      if(x<cx-a-56||x>cx+a+56||y<cy-b-56||y>cy+b+56) continue;
-      var d=Math.abs(dist(x,y)); if(d>R) continue;
-      var op=0.9*Math.pow(1-d/R,0.8); if(op<0.05) continue;
-      var v=vec(x,y), L=d>14?22:15;
-      out+='<line opacity="'+op.toFixed(2)+'" x1="'+(x-v[0]*L/2).toFixed(1)+'" y1="'+(y-v[1]*L/2).toFixed(1)+'" x2="'+(x+v[0]*L/2).toFixed(1)+'" y2="'+(y+v[1]*L/2).toFixed(1)+'"/>';
+      var d=Math.abs(dist(x,y));
+      var near=Math.exp(-Math.pow(d/55,1.2));
+      var op=0.05+0.85*near;
+      var v=vec(x,y), L=12+10*near;
+      out+='<line opacity="'+op.toFixed(2)+'" stroke-width="'+(1.3+0.6*near).toFixed(2)+'" x1="'+(x-v[0]*L/2).toFixed(1)+'" y1="'+(y-v[1]*L/2).toFixed(1)+'" x2="'+(x+v[0]*L/2).toFixed(1)+'" y2="'+(y+v[1]*L/2).toFixed(1)+'"/>';
     }}
     out+='</g>';
-    out+='<g fill="none" stroke="var(--teal)" stroke-width="2.4" stroke-linecap="round" opacity=".9">';
-    var starts=[];
-    for(var i=0;i<9;i++){var t=2*Math.PI*(i+0.3)/9;starts.push([cx+(a+52)*Math.cos(t), cy+(b+52)*Math.sin(t)]);}
+    out+='<g fill="none" stroke="var(--teal)" stroke-linecap="round" stroke-linejoin="round">';
+    var starts=[],i,k;
+    for(i=0;i<9;i++){var t=2*Math.PI*(i+0.3)/9;starts.push([cx+(a+52)*Math.cos(t), cy+(b+52)*Math.sin(t)]);}
+    var seed=20241114;
+    function rnd(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}
+    for(var sd=0;sd<4;sd++){
+      var cnt=6+Math.floor(rnd()*5);
+      for(k=0;k<cnt;k++){
+        var r=rnd();
+        if(sd===0) starts.push([W*r,-6]);
+        else if(sd===1) starts.push([W*r,H+6]);
+        else if(sd===2) starts.push([-6,H*r]);
+        else starts.push([W+6,H*r]);
+      }
+    }
+    for(k=0;k<5;k++){var ta=rnd()*2*Math.PI, ra=1.15+rnd()*0.9; starts.push([cx+a*ra*Math.cos(ta), cy+b*ra*Math.sin(ta)]);}
     starts.forEach(function(s){
-      var x=s[0],y=s[1],pts=[[x,y]];
-      for(var i=0;i<260;i++){var v=vec(x,y);x+=3*v[0];y+=3*v[1];pts.push([x,y]);}
-      var dstr='M'+pts.filter(function(p,i){return i%3==0;}).map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' L');
-      out+='<path d="'+dstr+'" marker-end="url(#ah2)"/>';
+      var x=s[0],y=s[1],pts=[[x,y,Math.abs(dist(x,y))]];
+      for(var n2=0;n2<520;n2++){var v=vec(x,y);x+=3.4*v[0];y+=3.4*v[1];
+        if(x<-30||x>W+30||y<-30||y>H+30) break;
+        pts.push([x,y,Math.abs(dist(x,y))]);}
+      for(var p=0;p<pts.length-1;p+=4){
+        var seg=pts.slice(p,Math.min(p+6,pts.length));
+        var dd=seg[0][2], nr=Math.exp(-Math.pow(dd/80,1.2));
+        var op=0.10+0.85*nr, sw=1.1+2.0*nr;
+        out+='<path opacity="'+op.toFixed(2)+'" stroke-width="'+sw.toFixed(2)+'" d="M'+seg.map(function(q){return q[0].toFixed(1)+' '+q[1].toFixed(1);}).join(' L')+'"/>';
+      }
     });
     out+='</g>';
     var pts=[],N=240;
