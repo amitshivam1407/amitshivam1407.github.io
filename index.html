@@ -116,6 +116,17 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 .arc-text h4{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:4.2cqw;line-height:1.15;margin:0 0 2.2cqw;text-wrap:balance}
 .arc-text h4::after{content:"";display:block;width:9cqw;height:.5cqw;background:#FF8A4C;margin-top:2cqw}
 .arc-text p{margin:0;font-size:2.4cqw;line-height:1.4;color:#B9C4D4}
+.arc-text sub{font-size:.62em;line-height:0}
+.arc-text .arc-auth{font-size:1.6cqw;margin-top:2.4cqw;color:#8FA0B8}
+@container (max-width:460px){.arc-text .arc-auth{display:none}}
+.vplay{position:absolute;right:22px;bottom:22px;width:58px;height:58px;border:0;padding:0;border-radius:50%;background:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.35);cursor:pointer;transition:transform .15s;display:none}
+.vplay::after{content:"";position:absolute;left:23px;top:17px;border-left:18px solid var(--accent-fg);border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vplay:hover{transform:scale(1.08)}
+.vplay:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.arc.live .vplay{display:block}
+.l0wrap .arc{display:none}
+.l0wrap.live .arc{display:block}
+.l0wrap.live.playing .arc,.l0wrap.live:not(.playing) video{display:none}
 .arc-links{list-style:none;margin:0;padding:.85rem .9rem 0;display:flex;flex-wrap:wrap;gap:.45rem}
 .arc-links a{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;border:1px solid var(--line);border-radius:999px;padding:.3rem .75rem;text-decoration:none;color:var(--fg);background:var(--surface)}
 .arc-links a::before{content:"";border-left:7px solid var(--accent);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
@@ -242,7 +253,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
 <section id="about" class="wrap block">
   <div class="sec-head">
-    <p class="kicker">About</p>
+    <p class="kicker">About Me</p>
   </div>
   <div class="about">
     <aside class="pcard">
@@ -260,7 +271,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       </ul>
     </aside>
     <div class="bio">
-      <p>I am a postdoctoral researcher at SYSTEC&ndash;ISR, University of Porto, working on guidance, control and estimation for autonomous vehicles. My Ph.D. at the Indian Institute of Science (2024) was based on designing heading angle based vector field guidance laws for path-following, applicable to ground, aerial and underwater vehicles.</p>
+      <p>I am a postdoctoral researcher at SYSTEC&ndash;ISR, University of Porto, working on guidance, control and estimation for autonomous aircraft. My Ph.D. at the Indian Institute of Science (2024) was on vector fields for path-following guidance.</p>
       <p>Since then, at Politecnico di Milano and Porto, I have worked on variable look-ahead guidance, curvature-limited Lam&eacute;-curve trajectories, airborne wind energy, robust control with feasibility guarantees and safety filters, and on taking these methods to flight tests and real-time hardware.</p>
       <p>I supervise student projects on nano-UAV navigation and autonomous racing vehicles. I am open to collaboration and to roles in guidance, control and autonomy for aerospace and robotics.</p>
     </div>
@@ -319,7 +330,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <article class="feature">
     <div class="f-text">
       <p class="tag">IFAC World Congress 2026 · accepted</p>
-      <h3>Variable $L_0$ guidance: a larger envelope for path following</h3>
+      <h3>Variable L<sub>0</sub> guidance: a larger envelope for path following</h3>
       <p>A vector-field guidance strategy whose look-ahead distance varies in time, which widens the operating envelope in which a UAV converges onto a path. The paper is accepted; fixed-wing flight experiments are under way using an ArduPilot-based autopilot.</p>
       <p class="cite">A. Shivam, M. C. R. M. Fernandes, F. A. C. C. Fontes, L. Fagiano, <em>Variable L<sub>0</sub> Guidance Strategy: Enlarged Operational Envelope and Path-Following</em>, IFAC World Congress, 2026.</p>
       <div class="cta left">
@@ -330,10 +341,22 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <div class="f-media">
       <figure class="video">
-        <video controls muted playsinline preload="metadata" poster="assets/flight_poster.jpg">
-          <source src="assets/flight_test_sample.mp4" type="video/mp4">
-          Your browser cannot play this video.
-        </video>
+        <div class="l0wrap" id="l0wrap">
+          <div class="arc" id="l0Anim">
+            <img src="assets/flight_poster.jpg" alt="Poster: Variable L0 guidance for path following, a vector field converging onto a stadium-shaped path" loading="lazy">
+            <canvas aria-hidden="true"></canvas>
+            <div class="arc-text" aria-hidden="true">
+              <h4>Variable L<sub>0</sub> guidance for path following</h4>
+              <p>Outdoor fixed-wing flight tests</p>
+              <p class="arc-auth">A. Shivam &middot; M. C. R. M. Fernandes &middot; F. A. C. C. Fontes &middot; L. Fagiano<br>IFAC World Congress 2026</p>
+            </div>
+            <button type="button" class="vplay" id="l0play" aria-label="Play the flight-test video"></button>
+          </div>
+          <video controls muted playsinline preload="metadata" poster="assets/flight_poster.jpg">
+            <source src="assets/flight_test_sample.mp4" type="video/mp4">
+            Your browser cannot play this video.
+          </video>
+        </div>
         <figcaption>Sample flight-test footage: hand launch, flight and ground-station telemetry.</figcaption>
       </figure>
     </div>
@@ -414,7 +437,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <div class="card"><h3>Airborne wind energy</h3><p>Set-stabilising guidance for tethered flight, where the target is a region of the state space, not a single trajectory.</p></div>
     <div class="card"><h3>Sliding-mode and prescribed-performance control</h3><p>Hybrid-gain finite-time controllers with explicit feasibility under bounded disturbances and input limits. <a href="https://github.com/amitshivam1407/safe-smc">SAFE-SMC</a> manuscript in preparation.</p></div>
     <div class="card"><h3>Safety-critical control</h3><p>CBF-CLF quadratic programs with lookahead augmentation, validated on a physical vehicle in real time.</p></div>
-    <div class="card"><h3>Adaptive Estimation in Autonomous Systems</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
+    <div class="card"><h3>Estimation</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
     <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation built around adaptive state estimation, through the CrazyNaV thesis.</p></div>
   </div>
   <p class="more">Full publication list on <a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a> and my <a href="assets/Amit_Shivam_CV.pdf">CV</a>.</p>
@@ -432,7 +455,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       <div class="card"><h3>Perception in the loop</h3><p>Overhead vision with OpenCV, UDP and Bluetooth LE links, and ROS/Gazebo simulation for nano-UAV navigation.</p></div>
       <div class="card"><h3>Guidance, navigation and control</h3><p>Path following, constrained control, estimation and mission-level autonomy for UAVs, with proofs and tuning evidence together.</p></div>
       <div class="card"><h3>Estimation and sensor fusion</h3><p>Adaptive Kalman filtering that fuses landmark detections, distance sensing and camera data, with noise statistics adapted online instead of tuned once by hand.</p></div>
-      <div class="card"><h3>Mentoring students</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
+      <div class="card"><h3>Mentoring engineers</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
     </div>
   </div>
 </section>
@@ -693,6 +716,50 @@ window.addEventListener('resize',function(){fit();if(reduce)still();});
 if(reduce){still();}
 else if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting){if(!running){running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}}else running=false;},{threshold:0.1}).observe(box);}
 else{running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}
+})();
+</script>
+<script>
+/* Variable L0 card: stadium path, look-ahead L0 varying in time; click to play the flight video */
+(function(){
+var wrap=document.getElementById('l0wrap'),box=document.getElementById('l0Anim');if(!wrap||!box)return;
+var cv=box.querySelector('canvas'),ctx=cv&&cv.getContext&&cv.getContext('2d'),vid=wrap.querySelector('video');if(!ctx)return;
+var WU=160,HU=90,sc=1,CX=122,CY=46,HA=18,RR=14,Lv=14,N=150,P=[],running=false,last=0,t0=0;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function fit(){var r=box.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);if(r.width<2)return;cv.width=Math.round(r.width*d);cv.height=Math.round(cv.width*9/16);sc=cv.width/WU;}
+function sdf(x,y){var dx=Math.max(Math.abs(x-CX)-HA,0),dy=y-CY,h=Math.hypot(dx,dy);return{d:h-RR,h:h,dx:dx,dy:dy};}
+function field(x,y){var q=sdf(x,y),nx,ny;
+ if(q.h<1e-6){nx=0;ny=q.dy>=0?1:-1;}else{nx=q.dx*(x>=CX?1:-1)/q.h;ny=q.dy/q.h;}
+ var k=Math.tanh(q.d/Lv),c=Math.sqrt(Math.max(0,1-k*k));return[-k*nx-c*ny,-k*ny+c*nx,q.d];}
+function spawn(p){p.x=Math.random()*(WU+10)-5;p.y=Math.random()*(HU+10)-5;p.age=0;p.life=4+Math.random()*5;p.tr=[[p.x,p.y]];}
+for(var i=0;i<N;i++){var p={};spawn(p);p.age=Math.random()*p.life;P.push(p);}
+function step(dt){for(var i=0;i<P.length;i++){var p=P[i],v=field(p.x,p.y);p.x+=v[0]*17*dt;p.y+=v[1]*17*dt;p.age+=dt;p.tr.push([p.x,p.y]);if(p.tr.length>16)p.tr.shift();
+ if(p.age>p.life||p.x<-8||p.x>WU+8||p.y<-8||p.y>HU+8)spawn(p);}}
+function path(){ctx.beginPath();ctx.moveTo((CX-HA)*sc,(CY-RR)*sc);ctx.lineTo((CX+HA)*sc,(CY-RR)*sc);ctx.arc((CX+HA)*sc,CY*sc,RR*sc,-Math.PI/2,Math.PI/2);ctx.lineTo((CX-HA)*sc,(CY+RR)*sc);ctx.arc((CX-HA)*sc,CY*sc,RR*sc,Math.PI/2,Math.PI*1.5);ctx.closePath();}
+function draw(){
+ ctx.fillStyle='#0A1220';ctx.fillRect(0,0,cv.width,cv.height);ctx.lineWidth=Math.max(1,sc*0.18);
+ for(var gx=7;gx<WU;gx+=9)for(var gy=6;gy<HU;gy+=9){var v=field(gx,gy),f=0.3+0.7*Math.exp(-Math.abs(v[2])/26),L=3.4,x2=gx+v[0]*L/2,y2=gy+v[1]*L/2,an=Math.atan2(v[1],v[0]),h=1.1;
+  ctx.strokeStyle='rgba(95,198,207,'+(0.34*f)+')';ctx.beginPath();ctx.moveTo((gx-v[0]*L/2)*sc,(gy-v[1]*L/2)*sc);ctx.lineTo(x2*sc,y2*sc);
+  ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an-0.5))*sc,(y2-h*Math.sin(an-0.5))*sc);ctx.moveTo(x2*sc,y2*sc);ctx.lineTo((x2-h*Math.cos(an+0.5))*sc,(y2-h*Math.sin(an+0.5))*sc);ctx.stroke();}
+ ctx.lineCap='round';
+ for(var i=0;i<P.length;i++){var p=P[i],t=p.tr,m=t.length;if(m<2)continue;var fade=Math.min(1,p.age/0.6)*Math.min(1,(p.life-p.age)/0.8);
+  ctx.lineWidth=sc*0.5;ctx.strokeStyle='rgba(95,198,207,'+(0.2*fade)+')';ctx.beginPath();ctx.moveTo(t[0][0]*sc,t[0][1]*sc);for(var k=1;k<m>>1;k++)ctx.lineTo(t[k][0]*sc,t[k][1]*sc);ctx.stroke();
+  ctx.strokeStyle='rgba(95,198,207,'+(0.85*fade)+')';ctx.beginPath();ctx.moveTo(t[m>>1][0]*sc,t[m>>1][1]*sc);for(var k2=(m>>1)+1;k2<m;k2++)ctx.lineTo(t[k2][0]*sc,t[k2][1]*sc);ctx.stroke();}
+ path();ctx.strokeStyle='rgba(255,138,76,0.22)';ctx.lineWidth=sc*2.4;ctx.stroke();ctx.strokeStyle='#FF8A4C';ctx.lineWidth=sc*0.95;ctx.stroke();
+ // look-ahead gauge (schematic): bar length follows the current L0
+ var bx=(CX-HA-RR)*sc,by=(CY+RR+9)*sc,bw=40*sc*(Lv-6)/16+6*sc;
+ ctx.fillStyle='rgba(243,246,251,0.85)';ctx.font=(sc*3.4)+'px "IBM Plex Mono",ui-monospace,monospace';ctx.textAlign='left';ctx.fillText('look-ahead L\u2080',bx,by);
+ ctx.fillStyle='rgba(95,198,207,0.9)';ctx.fillRect(bx,by+sc*1.6,bw,sc*1.1);
+}
+function setL(t){Lv=6+16*(0.5-0.5*Math.cos(6.2832*t/10));}
+function frame(now){if(!running)return;var dt=Math.min(0.05,(now-last)/1000||0.016);last=now;setL((now-t0)/1000);step(dt);draw();requestAnimationFrame(frame);}
+function begin(){if(running||reduce||wrap.classList.contains('playing'))return;running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}
+function still(){fit();Lv=14;for(var i=0;i<260;i++)step(0.04);draw();}
+fit();box.classList.add('live');wrap.classList.add('live');
+window.addEventListener('resize',function(){fit();if(reduce)still();});
+document.getElementById('l0play').addEventListener('click',function(){running=false;wrap.classList.add('playing');if(vid){var pr=vid.play();if(pr&&pr.catch)pr.catch(function(){});}});
+if(reduce){still();}
+else if('IntersectionObserver' in window){new IntersectionObserver(function(e){if(e[0].isIntersecting)begin();else running=false;},{threshold:0.1}).observe(box);}
+else begin();
 })();
 </script>
 </body>
