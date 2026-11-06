@@ -156,6 +156,22 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+
+/* about */
+.about{display:grid;grid-template-columns:290px 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.pcard{text-align:left}
+.pcard img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:1px solid var(--line);background:var(--surface);display:block;margin:0 auto 1.1rem}
+.pcard h3{font-size:1.5rem;margin-bottom:.4rem}
+.pcard .role{color:var(--muted);margin:0 0 1rem;font-size:.95rem}
+.plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem;font-size:.95rem}
+.plist li{display:flex;align-items:center;gap:.65rem;min-width:0}
+.plist svg{flex:none;width:18px;height:18px;fill:var(--muted)}
+.plist a{color:var(--fg);text-decoration:none}
+.plist a:hover{color:var(--accent)}
+.plist a:hover ~ svg{fill:var(--accent)}
+.bio p{max-width:62ch;font-size:1.05rem}
+@media (max-width:860px){.about{grid-template-columns:1fr}.pcard{max-width:340px}}
+
 .poster-link{position:relative;display:block;line-height:0}
 .poster-link img{width:100%;height:auto}
 .poster-link .play{position:absolute;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.35);transition:transform .15s}
@@ -170,6 +186,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div class="wrap nav-in">
     <a class="brand" href="#top">Amit Shivam</a>
     <nav aria-label="Sections">
+      <a href="#about">About</a>
       <a href="#featured">Featured work</a>
       <a href="#research">Research</a>
       <a href="#industry">Industry</a>
@@ -204,6 +221,34 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div><span class="num">Seal of Excellence</span><span class="lab">MSCA, European Commission, 90%</span></div>
   <div><span class="num">Fixed-wing + multirotor</span><span class="lab">outdoor flight trials</span></div>
   <div><span class="num">1 of 6 finalists</span><span class="lab">TrustRobotics Challenge 2026</span></div>
+</section>
+
+
+<section id="about" class="wrap block">
+  <div class="sec-head">
+    <p class="kicker">About</p>
+  </div>
+  <div class="about">
+    <aside class="pcard">
+      <img src="assets/profile.jpg" alt="Portrait of Amit Shivam" width="200" height="200">
+      <h3>Amit Shivam</h3>
+      <p class="role">Postdoctoral Researcher, SYSTEC&ndash;ISR</p>
+      <ul class="plist">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Porto, Portugal</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7v2h20V7L12 2zM4 11v7H2v3h20v-3h-2v-7h-3v7h-2v-7h-4v7H9v-7H4z"/></svg><span>University of Porto</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5v14h20V5H2zm18 2.3-8 5-8-5V7l8 5 8-5v.3z"/></svg><a href="mailto:amitshivam@alum.iisc.ac.in">Email</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6V2zm8 1.5V8h4.5L14 3.5zM8.5 12h8v1.5h-8V12zm0 3h8v1.5h-8V15z"/></svg><a href="assets/Amit_Shivam_CV.pdf">CV</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/></svg><a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.200-1.200 3.200-1.200.6 1.600.2 2.800.1 3.100.8.8 1.200 1.800 1.200 3.100 0 4.400-2.700 5.400-5.300 5.700.4.4.8 1.100.8 2.200v3.200c0 .3.2.7.8.6A11.500 11.500 0 0 0 12 .5z"/></svg><a href="https://github.com/amitshivam1407">GitHub</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 2H3.6A1.600 1.600 0 0 0 2 3.600v16.800A1.600 1.600 0 0 0 3.600 22h16.800a1.600 1.600 0 0 0 1.600-1.600V3.600A1.600 1.600 0 0 0 20.400 2zM8 19H5V9.500h3V19zM6.500 8.200a1.700 1.700 0 1 1 0-3.400 1.700 1.700 0 0 1 0 3.400zM19 19h-3v-4.600c0-1.100 0-2.500-1.500-2.500s-1.800 1.200-1.800 2.400V19h-3V9.500h2.900v1.300c.4-.8 1.400-1.500 2.800-1.500 3 0 3.600 2 3.600 4.600V19z"/></svg><a href="https://www.linkedin.com/in/amitshivam1407/">LinkedIn</a></li>
+      </ul>
+    </aside>
+    <div class="bio">
+      <p>I am a postdoctoral researcher at SYSTEC&ndash;ISR, University of Porto, working on guidance, control and estimation for autonomous aircraft. My Ph.D. at the Indian Institute of Science (2024) was on vector fields for path-following guidance.</p>
+      <p>Since then, at Politecnico di Milano and Porto, I have worked on variable look-ahead guidance, curvature-limited Lam&eacute;-curve trajectories, airborne wind energy, robust control with feasibility guarantees and safety filters, and on taking these methods to flight tests and real-time hardware.</p>
+      <p>I supervise student projects on nano-UAV navigation and autonomous racing vehicles. I am open to collaboration and to roles in guidance, control and autonomy for aerospace and robotics.</p>
+    </div>
+  </div>
 </section>
 
 <section id="featured" class="wrap block">
@@ -273,7 +318,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
           <source src="assets/flight_test_sample.mp4" type="video/mp4">
           Your browser cannot play this video.
         </video>
-        <figcaption>Sample flight-test footage: flight and ground-station telemetry.</figcaption>
+        <figcaption>Sample flight-test footage: hand launch, flight and ground-station telemetry.</figcaption>
       </figure>
     </div>
   </article>
@@ -318,7 +363,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
           <img src="assets/arcsine_poster.jpg" alt="Poster: Arcsine vector fields for path following, an illustrative vector field converging onto an elliptic path, with labels for the six path types in the playlist" loading="lazy">
           <span class="play" aria-hidden="true"></span>
         </a>
-        <figcaption>Click to watch the six indoor flight-test videos on YouTube in motion capture facility at AVL,IISc.</figcaption>
+        <figcaption>Click to watch the six indoor flight-test videos on YouTube.</figcaption>
       </figure>
     </div>
   </article>
@@ -338,7 +383,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <div class="card"><h3>Estimation</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
     <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation built around adaptive state estimation, through the CrazyNaV thesis.</p></div>
   </div>
-  <p class="more">Full publication list on <a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a>;  <a href="assets/Amit_Shivam_CV.pdf">CV</a>.</p>
+  <p class="more">Full publication list on <a href="https://scholar.google.com/citations?user=iI0NlWkAAAAJ&amp;hl=en">Google Scholar</a> and my <a href="assets/Amit_Shivam_CV.pdf">CV</a>.</p>
 </section>
 
 <section id="industry" class="band">
