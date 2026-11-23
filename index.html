@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Amit Shivam</title>
-<meta name="description" content=" Postdoctoral researcher in guidance, control and autonomy for UAVs and robots, University of Porto.">
+<meta name="description" content="Postdoctoral researcher in guidance, control and autonomy for UAVs and robots, University of Porto.">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
@@ -203,7 +203,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     <a class="brand" href="#top">Amit Shivam</a>
     <nav aria-label="Sections">
       <a href="#about">About Me</a>
-      <a href="#featured">Selected work</a>
+      <a href="#featured">Featured work</a>
       <a href="#research">Research</a>
       <a href="#industry">Industry</a>
       <a href="#supervision">Supervision</a>
@@ -236,7 +236,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div><span class="num">3 journal papers</span><span class="lab">2 in JGCD · 1 in Aerospace Sci. &amp; Tech.</span></div>
   <div><span class="num">Seal of Excellence</span><span class="lab">MSCA, European Commission, 90%</span></div>
   <div><span class="num">Fixed-wing + multirotor</span><span class="lab">outdoor and indoor flight trials</span></div>
-  <div><span class="num">3rd prize</span><span class="lab">TrustRobotics Challenge 2026, 6 finalists</span></div>
+  <div><span class="num">Third prize</span><span class="lab">TrustRobotics Challenge 2026, 6 finalists</span></div>
 </section>
 
 
@@ -259,9 +259,10 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       </ul>
     </aside>
     <div class="bio">
-      <p>I am a postdoctoral researcher at SYSTEC&ndash;ISR, University of Porto, working on guidance, control and estimation for autonomous aircraft. My Ph.D. at the Indian Institute of Science (2024) was on vector fields for path-following guidance.</p>
-      <p>Since then, at Politecnico di Milano and Porto, I have worked on variable look-ahead guidance, curvature-limited Lam&eacute;-curve trajectories, airborne wind energy, robust control with feasibility guarantees and safety filters, and on taking these methods to flight tests and real-time hardware.</p>
-      <p>I supervise student projects on nano-UAV navigation and autonomous racing vehicles. I am open to collaboration and to roles in guidance, control and autonomy for aerospace and robotics.</p>
+      <p>I am a postdoctoral researcher at SYSTEC&ndash;ISR, University of Porto, working on guidance, control, and estimation for autonomous robotic systems, with a primary focus on unmanned aerial vehicles (UAVs). I received my Ph.D. in Aerospace Engineering from the Indian Institute of Science (IISc), Bengaluru, in 2024, where my research focused on vector-field methods for path-following guidance.</p>
+      <p>My subsequent research at Politecnico di Milano and the University of Porto has focused on developing variable-lookahead guidance strategies, curvature-constrained Lam&eacute;-curve trajectory planning, constraint-aware control of airborne wind energy systems, and sliding-mode-based robust nonlinear control design.</p>
+      <p>I also work on developing guidance and collision-avoidance for autonomous ground vehicles, including the LACART project. I supervise student projects involving nano-UAV navigation and autonomous robotic racing.</p>
+      <p>I welcome research collaborations and engineering opportunities in guidance, navigation, control, and autonomous robotics.</p>
     </div>
   </div>
 </section>
@@ -274,10 +275,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
   <article class="feature">
     <div class="f-text">
-      <p class="tag">Supervised M.Sc. thesis · in progress</p>
-      <h3>CrazyNaV: vision-guided navigation for nano UAVs without GPS</h3>
-      <p>Indoor navigation for Crazyflie nano quadrotors that have no GPS and little onboard compute, in the M.Sc. thesis of <strong>Tiago Vieira</strong>, whom I supervise.</p>
-      <p>A perception &rarr; estimation &rarr; planning &rarr; control pipeline, developed in Gazebo with a ROS bridge before hardware. The research focus is estimation: fusing landmark detections, distance sensing and the frontal camera into a state estimate whose noise statistics are adapted online.</p>
+      <p class="tag">Supervised M.Sc. thesis · In progress</p>
+      <h3>CrazyNaV: Vision-guided navigation for GPS-denied nano-UAVs</h3>
+      <p>Supervising the M.Sc. thesis of <strong>Tiago Vieira</strong>, focused on vision-guided indoor navigation for Crazyflie nano-quadrotors operating without GPS and with limited onboard computational resources.</p>
+      <p>The project develops a perception &rarr; estimation &rarr; planning &rarr; control pipeline, beginning with software-in-the-loop simulation using ROS and Gazebo, followed by implementation and experimental validation on a physical Crazyflie platform.</p>
+      <p>The central research objective is adaptive state estimation through the fusion of visual landmarks, distance measurements, and camera observations, with online adaptation of measurement-noise statistics to improve navigation reliability under changing sensing conditions.</p>
       <ul class="chips">
         <li>Crazyflie</li><li>Gazebo + ROS</li><li>Adaptive estimation</li><li>GPS-denied</li>
       </ul>
@@ -293,10 +295,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
   <article class="feature flip">
     <div class="f-text">
-      <p class="tag">TrustRobotics Challenge 2026 · 3rd prize</p>
-      <h3>LACART: a safety filter that sees one step ahead</h3>
-      <p>A lookahead-augmented control-barrier / control-Lyapunov-function quadratic program for a unicycle. Moving the control point to a body-fixed lookahead position makes the turn rate appear in the barrier derivative, so a single QP can enforce track limits while a CLF with slack handles tracking.</p>
-      <p>It runs on a 1:43-scale racing car with overhead vision (OpenCV colour segmentation), UDP state streaming and Bluetooth LE to an ESP32-C3 on the car. Team LACART won 3rd prize at the TrustRobotics Challenge 2026; the student-led hardware implementation is developed under my supervision with the Up2Speed project at FEUP.</p>
+      <p class="tag">TrustRobotics Challenge 2026 · Third Prize · Experimental Robotics</p>
+      <h3>LACART: Look-ahead Augmented Collision Avoidance and Reference Tracking for Autonomous Racing Robots</h3>
+      <p>LACART develops a lookahead-augmented CBF&ndash;CLF quadratic-programming controller for autonomous racing robots. By shifting the control point ahead of the vehicle, the formulation brings the steering input into the first derivative of the barrier function, enabling track-boundary constraints and reference-tracking objectives to be handled within a unified optimization framework.</p>
+      <p>The controller was implemented on a 1:43-scale autonomous racing car using overhead vision with OpenCV-based colour segmentation, UDP state communication, and Bluetooth Low Energy commands to an onboard ESP32-C3.</p>
+      <p>Team LACART won Third Prize at the TrustRobotics Challenge 2026. The student-led experimental implementation was developed within the UP2SPEED project at FEUP, under my research supervision.</p>
       <dl class="metrics">
         <div><dt>Loop rate</dt><dd>25 Hz</dd></div>
         <div><dt>QP solve, mean</dt><dd>7.49 ms</dd></div>
@@ -309,20 +312,22 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <div class="f-media">
       <figure class="video">
-        <video controls muted playsinline preload="metadata" poster="assets/lacart_track1_poster.jpg">
-          <source src="assets/lacart_tracks.mp4" type="video/mp4">
+        <video controls muted playsinline preload="metadata" poster="assets/lacart_tracks_3rd_poster.jpg">
+          <source src="assets/lacart_tracks_3rd.mp4" type="video/mp4">
           Your browser cannot play this video. Team LACART: Pedro Lopes, Amit Shivam and Luís Tiago Paiva.
         </video>
-        <figcaption>Team LACART at the TrustRobotics Challenge 2026, Valence, 13 November 2026. Two real runs, track 1 (six obstacles) and track 2, the original track (four obstacles): top and front camera, measured trajectory, tracking error, heading rate and speed. Shaded zones mark where the lookahead (CBF) filter changes the command, reproduced offline from the controller code on the measured poses.</figcaption>
+        <figcaption>Team LACART, Third Prize at the TrustRobotics Challenge 2026, Valence, 13 November 2026. Two real runs, track 1 (six obstacles) and track 2, the original track (four obstacles): top and front camera, measured trajectory, tracking error, heading rate and speed. Shaded zones mark where the lookahead (CBF) filter changes the command, reproduced offline from the controller code on the measured poses.</figcaption>
       </figure>
     </div>
   </article>
 
   <article class="feature">
     <div class="f-text">
-      <p class="tag">IFAC World Congress 2026 · accepted</p>
-      <h3>Variable L<sub>0</sub> guidance: a larger envelope for path following</h3>
-      <p>A vector-field guidance strategy whose look-ahead distance varies in time, which widens the operating envelope in which a UAV converges onto a path. The paper is accepted; fixed-wing flight experiments are under way using an ArduPilot-based autopilot.</p>
+      <p class="tag">Research paper · Accepted | Fixed-wing flight experiments · In progress</p>
+      <h3>Variable-L<sub>0</sub> Guidance: Constraint-Aware Path Following for Fixed-Wing UAVs</h3>
+      <p>A variable-lookahead guidance strategy for fixed-wing UAVs that adapts the lookahead distance according to the vehicle's path-following state and geometric constraints.</p>
+      <p>The approach demonstrates how lookahead adaptation can improve transient convergence while accounting for path curvature, roll angle limit, and actuator feasibility. The objective is to enlarge the range of operating conditions in which reliable path following can be achieved without demanding infeasible manoeuvres.</p>
+      <p>The method is evaluated through numerical simulations, with fixed-wing flight experiments currently underway using an ArduPilot-based autopilot.</p>
       <p class="cite">A. Shivam, M. C. R. M. Fernandes, F. A. C. C. Fontes, L. Fagiano, <em>Variable L<sub>0</sub> Guidance Strategy: Enlarged Operational Envelope and Path-Following</em>, IFAC World Congress, 2026.</p>
       <div class="cta left">
         <a class="btn primary" href="https://arxiv.org/abs/2512.06124">Paper on arXiv</a>
@@ -343,9 +348,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
   <article class="feature flip">
     <div class="f-text">
-      <p class="tag">Journal of Guidance, Control, and Dynamics · published 2025</p>
-      <h3>Lamé-curve guidance for boundary surveillance</h3>
-      <p>A guidance law that circumscribes a rectangular boundary with a Lamé curve, which interpolates smoothly between a circle and a rounded rectangle. The path respects a curvature limit, so a fixed-wing UAV can fly it, and the vector field converges onto it from anywhere in the plane. The paper includes MATLAB simulations and indoor Crazyflie validation.</p>
+      <p class="tag">Journal of Guidance, Control, and Dynamics · Published 2025</p>
+      <h3>Lamé-Curve Guidance for Boundary Surveillance</h3>
+      <p>A geometry-based guidance framework for fixed-wing UAV boundary surveillance, using Lam&eacute; curves to construct smooth, curvature-constrained paths around rectangular regions. The curve geometry provides a tunable transition between circular and rounded-rectangular shapes, allowing boundary coverage and vehicle manoeuvrability to be considered together.</p>
+      <p>An analytically defined vector-field guidance law steers the UAV toward the prescribed surveillance path, with convergence properties established through theoretical analysis. The approach accounts for path curvature and fixed-wing turn-rate limitations, linking geometric path design with guidance feasibility.</p>
+      <p>The method was evaluated through MATLAB simulations and indoor Crazyflie flight experiments, demonstrating the progression from guidance-law development to experimental implementation.</p>
       <p class="cite">A. Shivam and A. Ratnoo, <em>Surveillance Guidance Using Lamé Curve Paths</em>, J. Guidance, Control, and Dynamics, 2025.</p>
       <div class="cta left">
         <a class="btn primary" href="https://www.youtube.com/watch?v=Qri-2F3kL0E">Watch the video</a>
@@ -373,9 +380,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 
   <article class="feature">
     <div class="f-text">
-      <p class="tag">Journal of Guidance, Control, and Dynamics · published 2023</p>
-      <h3>Arcsine vector field guidance for path following</h3>
-      <p>A nonlinear vector-field guidance law for UAV path following, with a formal convergence analysis and a lower turn-rate demand. Each video shows an indoor Crazyflie flight in a motion-capture facility, following one path type: straight line, circle, ellipse, sinusoid or parabola.</p>
+      <p class="tag">Journal of Guidance, Control, and Dynamics · Published 2023</p>
+      <h3>Arcsine Vector-Field Guidance for UAV Path Following</h3>
+      <p>A nonlinear vector-field guidance law for UAV path following, using an arcsine-based heading command to drive the vehicle toward a desired path. The approach is supported by theoretical convergence analysis and investigates reduced turn-rate demand compared with conventional vector-field guidance.</p>
+      <p>The method was experimentally demonstrated using Crazyflie nano-quadrotors in an indoor motion-capture facility. Five flight demonstrations illustrate path following along distinct geometries: straight line, circle, ellipse, sinusoid, and parabola.</p>
+      <p>The work connects analytical guidance-law design with experimental validation across both straight and curved reference paths.</p>
       <p class="cite">A. Shivam and A. Ratnoo, <em>Arcsine Vector Field for Path Following Guidance</em>, J. Guidance, Control, and Dynamics, 46(12):2409&ndash;2420, 2023.</p>
       <div class="cta left">
         <a class="btn primary" href="https://doi.org/10.2514/1.G007562">Paper (JGCD)</a>
@@ -409,15 +418,15 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 <section id="research" class="wrap block">
   <div class="sec-head">
     <p class="kicker">Research</p>
-    <h2>From curvature-feasible guidance to real-world implementation</h2>
+    <h2>Guidance, control, and estimation for autonomous systems</h2>
   </div>
   <div class="grid">
-    <div class="card"><h3>Vector-field guidance</h3><p>Arcsine and Lamé-curve fields, GLASS, robust vector fields and the variable look-ahead strategy for fixed-wing path following.</p></div>
-    <div class="card"><h3>Airborne wind energy</h3><p>Set-stabilising guidance for tethered flight, where the target is a region of the state space, not a single trajectory.</p></div>
-    <div class="card"><h3>Sliding-mode and prescribed-performance control</h3><p>Hybrid-gain finite-time controllers with explicit feasibility under bounded disturbances and input limits. <a href="https://github.com/amitshivam1407/safe-smc">SAFE-SMC</a> manuscript in preparation.</p></div>
-    <div class="card"><h3>Safety-critical control</h3><p>CBF-CLF quadratic programs with lookahead augmentation, validated on a physical vehicle in real time.</p></div>
-    <div class="card"><h3>Estimation</h3><p>Adaptive Kalman filtering, including Koopman-based noise adaptation for navigation, in preparation.</p></div>
-    <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation built around adaptive state estimation, through the CrazyNaV thesis.</p></div>
+    <div class="card"><h3>Vector-field guidance</h3><p>Nonlinear guidance laws, including arcsine vector fields, Lam&eacute;-curve paths, GLASS, and variable-lookahead strategies for UAV path following.</p></div>
+    <div class="card"><h3>Airborne wind energy</h3><p>Geometry-driven guidance and set stabilization for tethered aircraft, accounting for flight-path constraints and operating regions.</p></div>
+    <div class="card"><h3>Robust nonlinear control</h3><p>Sliding-mode and finite-time control with disturbance rejection, prescribed-performance objectives, and actuator constraints. <a href="https://github.com/amitshivam1407/safe-smc">SAFE-SMC</a> manuscript in preparation.</p></div>
+    <div class="card"><h3>Safety-critical control</h3><p>Lookahead-augmented CBF&ndash;CLF optimization for reference tracking and collision avoidance, with robotic racing experiments.</p></div>
+    <div class="card"><h3>State estimation</h3><p>Adaptive Kalman filtering and Koopman-based noise adaptation for navigation under uncertain sensor measurements; ongoing research.</p></div>
+    <div class="card"><h3>Vision-based navigation</h3><p>GPS-denied nano-UAV navigation combining visual sensing, state estimation, planning, and control, progressing from ROS&ndash;Gazebo simulation to Crazyflie experiments.</p></div>
   </div>
 </section>
 
@@ -428,12 +437,12 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
       <h2>What I bring to aerospace and robotics teams</h2>
     </div>
     <div class="grid three">
-      <div class="card"><h3>Flight testing</h3><p>Hand-launched fixed-wing and multirotor trials. Variable look-ahead guidance implemented in the ArduPilot C++ source and tested in SITL and HITL, with ground-station telemetry review.</p></div>
-      <div class="card"><h3>Real-time implementation</h3><p>Safety filters solved at 25 Hz with a 7.5 ms mean QP time, with measured delay budgets rather than assumed ones.</p></div>
-      <div class="card"><h3>Perception in the loop</h3><p>Overhead vision with OpenCV, UDP and Bluetooth LE links, and ROS/Gazebo simulation for nano-UAV navigation.</p></div>
-      <div class="card"><h3>Guidance, navigation and control</h3><p>Path following, constrained control, estimation and mission-level autonomy for UAVs, with proofs and tuning evidence together.</p></div>
-      <div class="card"><h3>Estimation and sensor fusion</h3><p>Adaptive Kalman filtering that fuses landmark detections, distance sensing and camera data, with noise statistics adapted online instead of tuned once by hand.</p></div>
-      <div class="card"><h3>Mentoring engineers</h3><p>Supervising a thesis and a student implementation team from first idea to hardware demo.</p></div>
+      <div class="card"><h3>Flight guidance and testing</h3><p>Guidance-law design for fixed-wing and multirotor UAVs, supported by simulation, autopilot integration, flight-data analysis, and experimental validation.</p></div>
+      <div class="card"><h3>Real-time control implementation</h3><p>Optimization-based safety filters and nonlinear controllers tested on robotic platforms, with attention to computation time, sampling, and actuation limits.</p></div>
+      <div class="card"><h3>Perception-to-control integration</h3><p>Camera-based localization, UDP communication, Bluetooth-enabled vehicle control, and ROS&ndash;Gazebo navigation development.</p></div>
+      <div class="card"><h3>Constraint-aware motion control</h3><p>Path-following and reference-tracking algorithms that account for curvature, turning authority, disturbance rejection, and safety constraints.</p></div>
+      <div class="card"><h3>Estimation and sensor fusion</h3><p>Research on adaptive state estimation using visual landmarks, range sensing, and measurement-noise adaptation for GPS-denied navigation.</p></div>
+      <div class="card"><h3>Research leadership and mentoring</h3><p>Supervision of student research and experimental robotics projects, from problem formulation and algorithm development to hardware demonstrations.</p></div>
     </div>
   </div>
 </section>
@@ -466,7 +475,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <div class="sup-row">
       <div class="sup-who">Team LACART</div>
-      <div class="sup-what"><strong>TrustRobotics Challenge 2026, 3rd prize.</strong> Student-led hardware implementation of the lookahead CBF-CLF safety filter.</div>
+      <div class="sup-what"><strong>TrustRobotics Challenge 2026, Third Prize.</strong> Student-led hardware implementation of the lookahead CBF-CLF safety filter.</div>
     </div>
   </div>
 </section>
@@ -476,7 +485,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   <div class="wrap foot-in">
     <div>
       <h2>Get in touch</h2>
-      <p>Open to collaboration and to roles in guidance, control and autonomy for aerospace and robotics.</p>
+      <p>I welcome research collaborations and engineering opportunities in guidance, navigation, control, and autonomy for aerospace and robotic systems.</p>
     </div>
     <ul class="links">
       <li><a href="mailto:amitshivam@alum.iisc.ac.in">amitshivam@alum.iisc.ac.in</a></li>
