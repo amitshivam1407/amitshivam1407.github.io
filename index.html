@@ -166,7 +166,7 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 .small{margin-top:2rem;font-size:.8rem;opacity:.65;font-family:"IBM Plex Mono",ui-monospace,monospace}
 
 @media (max-width:860px){
-  .hero-in,.feature{grid-template-columns:1fr}
+  .hero-in,.feature,.feature.compact.wide,.feature.compact.wide.flip{grid-template-columns:1fr}
   .hero-in{gap:5.5rem}
   .hero-photo{margin:0 12px}
   .feature.flip .f-text{order:1}.feature.flip .f-media{order:2}
@@ -200,6 +200,14 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
 .bio p{max-width:68ch;font-size:1rem;margin:0 0 .8rem}.bio p:last-child{margin-bottom:0}#about.block{padding-bottom:clamp(1rem,3vw,2rem)}
 @media (max-width:860px){.about{grid-template-columns:1fr}.pcard{max-width:340px}}
 
+.arc-play{position:absolute;right:4cqw;bottom:4cqw;width:9cqw;height:9cqw;min-width:44px;min-height:44px;border-radius:50%;border:0;padding:0;background:var(--accent);box-shadow:0 4px 18px rgba(0,0,0,.35);cursor:pointer;transition:transform .15s;display:none}
+.arc.live .arc-play{display:block}
+.arc-play span{position:absolute;left:40%;top:50%;transform:translateY(-50%);border-left:.95em solid var(--accent-fg);border-top:.62em solid transparent;border-bottom:.62em solid transparent;font-size:clamp(14px,3cqw,22px)}
+.arc-play:hover{transform:scale(1.08)}
+.arc-play:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+#l0Video[hidden]{display:none}
+#l0Video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+sup,sub{line-height:0}
 .poster-link{position:relative;display:block;line-height:0}
 .poster-link img{width:100%;height:auto}
 .poster-link .arc-text{line-height:1.2}
@@ -351,11 +359,11 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
     </div>
     <div class="f-media">
       <figure class="video">
-        <video controls muted playsinline preload="metadata" poster="assets/flight_poster.jpg">
+        <video id="l0Video" controls muted playsinline preload="metadata" poster="assets/flight_poster.jpg">
           <source src="assets/flight_test_sample.mp4" type="video/mp4">
           Your browser cannot play this video.
         </video>
-        <figcaption>Sample flight-test footage: hand launch, flight and ground-station telemetry.</figcaption>
+        <figcaption>Variable-L<sub>0</sub> guidance: trajectories converging onto the path, then sample flight-test footage (hand launch, flight and ground-station telemetry).</figcaption>
       </figure>
     </div>
   </article>
@@ -393,6 +401,26 @@ figcaption{font-size:.8rem;color:var(--muted);padding:.55rem .8rem;font-family:"
   </article>
 
   <article class="feature compact wide">
+    <div class="f-text">
+      <p class="tag">Manuscript in preparation · Multirotor flight experiments</p>
+      <h3>Poly-Lam&eacute; Planner: Curvature-Aware Guidance for Rectilinear Boundary Surveillance</h3>
+      <p>A co-design framework in which path planning and path-following guidance share one curvature-feasible geometric representation. Lam&eacute; quadrants are concatenated into a closed G<sup>2</sup> path with bounded curvature around an arbitrary rectilinear boundary, with both convex and concave corners.</p>
+      <p>Because each quadrant is an implicit algebraic curve, a curvature-aware vector-field guidance law and a look-ahead speed schedule follow in closed form, on and off the path. The analysis covers convergence to the active quadrant, continuity of the command at quadrant junctions, and an ultimate error bound under bounded disturbances.</p>
+      <p>The framework is evaluated in simulation, in PX4 software-in-the-loop tests, and in outdoor octocopter flights.</p>
+      <p class="cite">V. Bueno, A. Shivam, L. Cecchin and L. Fagiano, <em>Poly-Lam&eacute; Planner and Curvature-Aware Guidance for Rectilinear Boundary Surveillance: Theory, Simulations, and Experiments</em>, manuscript in preparation.</p>
+      <p class="status">Preprint and code will be shared after submission.</p>
+    </div>
+    <div class="f-media">
+      <figure class="video">
+        <video id="plVideo" muted loop playsinline preload="metadata" poster="assets/polylame_poster.jpg" aria-label="Animation: vehicle trajectories converging onto a closed Poly-Lam&eacute; path around an L-shaped boundary">
+          <source src="assets/polylame_vector_field.mp4" type="video/mp4">
+        </video>
+        <figcaption>Schematic: vehicle trajectories converging onto a closed G<sup>2</sup> Poly-Lam&eacute; path around an L-shaped boundary under the vector-field guidance law.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="feature flip compact wide">
     <div class="f-text">
       <p class="tag">Journal of Guidance, Control, and Dynamics · Published 2023</p>
       <h3>Arcsine Vector-Field Guidance for UAV Path Following</h3>
@@ -692,6 +720,19 @@ function frame(now){
 function start(){if(running||reduce)return;running=true;last=performance.now();requestAnimationFrame(frame);}
 if('IntersectionObserver' in window&&hero){new IntersectionObserver(function(e){if(e[0].isIntersecting)start();else running=false;},{threshold:0.05}).observe(hero);}else start();
 })();
+</script>
+<script>
+/* Variable-L0 card: play the clip (animated intro, then footage) once when it scrolls into view */
+(function(){var v=document.getElementById('l0Video');if(!v||!('IntersectionObserver' in window))return;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var done=false;new IntersectionObserver(function(e){if(e[0].isIntersecting&&!done){done=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}},{threshold:0.6}).observe(v);})();
+</script>
+<script>
+/* Poly-Lame card: looping field animation, plays only while visible */
+(function(){var v=document.getElementById('plVideo');if(!v)return;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.controls=true;return;}
+if(!('IntersectionObserver' in window)){v.controls=true;return;}
+new IntersectionObserver(function(e){if(e[0].isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true;});}else v.pause();},{threshold:0.4}).observe(v);})();
 </script>
 <script>
 /* Lamé card: field converging onto a Lamé curve whose exponent n sweeps circle -> rounded rectangle */
